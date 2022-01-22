@@ -30,5 +30,40 @@
 }
 
 .hr1 {
-    width: 90%;
+    width: 95%;
+}
+
+.list {
+    width: 95%;
+    background-color: #202020;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.listCard {
+    height: 150px;
+    background-color: #404040;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.ind {
+    margin-right: 40px;
+    background-color: transparent;
+    border-style: none;
+    font-size: 40px;
+    color: white;
+}
+
+.ind1 {
+    margin-left: 40px;
+    background-color: transparent;
+    border-style: none;
+    font-size: 40px;
+    color: white;
+}
+
+.listCard img {
+    width: 90px;
+    height: 80px;
 }

@@ -1,8 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import { Container, Row, Col, Dropdown, Carousel, Card, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Container, Row, Col, Dropdown, Card, Button } from 'react-bootstrap';
+import ItemsCarousel from 'react-items-carousel';
+import productImage from './images/car.jpg';
 
 function App() {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
+
   return (
     <div className="body">
       <Container fluid>
@@ -46,18 +52,41 @@ function App() {
             </div>
           </Col>
 
-          <Col>
+          <Col sm={10}>
             <div className="sCol">
-              <h1>Edvor</h1>
+              <h1>Edvora</h1>
               <h5 className="prodH5">Products</h5>
             </div>
             <div>
               <p>Product Name</p>
               <hr className="hr1"/>
               <div className="list">
-                <Carousel show={3.5} slide={3} swiping={true}>
-                  
-                </Carousel>
+                <ItemsCarousel
+                requestToChangeActive={setActiveItemIndex}
+                activeItemIndex={activeItemIndex}
+                numberOfCards={4}
+                gutter={20}
+                leftChevron={<button className="ind">{'<'}</button>}
+                rightChevron={<button className="ind1">{'>'}</button>}
+                outsideChevron
+                chevronWidth={chevronWidth}
+              >
+                <div className="listCard">
+                  <img src={productImage} alt="product_image"/>
+                </div>
+                <div className="listCard">
+                  First card
+                </div>
+                <div className="listCard">
+                  First card
+                </div>
+                <div className="listCard">
+                  First card
+                </div>
+                <div className="listCard">
+                  First card
+                </div>
+              </ItemsCarousel>
               </div>
             </div>
           </Col>
