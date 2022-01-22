@@ -1,13 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Dropdown, Card, Button } from 'react-bootstrap';
 import ItemsCarousel from 'react-items-carousel';
 import productImage from './images/car.jpg';
+import Axios from "axios";
 
 function App() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
+  const [products, setProducts] = useState([]);
+  const productName = [];
+
+  const fetchProducts = async () => {
+    const { data } = await Axios.get(
+      "https://assessment-edvora.herokuapp.com/"
+    );
+
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  for (var i = 0; i < products.length; i++) {
+    if(productName.indexOf(products[i].product_name) < 0) {
+      productName[i] = products[i].product_name;
+    }
+  }
 
   return (
     <div className="body">
@@ -24,7 +45,7 @@ function App() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#">Action</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                               
@@ -34,7 +55,7 @@ function App() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#">Action</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
 
@@ -44,7 +65,7 @@ function App() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#">Action</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                 <br/>
@@ -56,9 +77,9 @@ function App() {
             <div className="sCol">
               <h1>Edvora</h1>
               <h5 className="prodH5">Products</h5>
+              
             </div>
             <div>
-              <p>Product Name</p>
               <hr className="hr1"/>
               <div className="list">
                 <ItemsCarousel
@@ -72,19 +93,28 @@ function App() {
                 chevronWidth={chevronWidth}
               >
                 <div className="listCard">
-                  <img src={productImage} alt="product_image"/>
-                </div>
-                <div className="listCard">
-                  First card
-                </div>
-                <div className="listCard">
-                  First card
-                </div>
-                <div className="listCard">
-                  First card
-                </div>
-                <div className="listCard">
-                  First card
+                  <Row>
+                    <Col sm={5}>
+                      <img src={productImage} alt="product_image"/>
+                    </Col>
+
+                    <Col sm={7}>
+                      <p>Product Name<br/><span className="span">Brand Name</span><br/>$ 29.99</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <p className="span">Location</p>
+                    </Col>
+                    <Col sm={7}>
+                      <p className="span">Date: 10:12:2021</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <p className="span">Descriptionof the product</p>
+                    </Col>
+                  </Row>
                 </div>
               </ItemsCarousel>
               </div>

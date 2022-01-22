@@ -41,10 +41,10 @@
 }
 
 .listCard {
-    height: 150px;
+    height: 200px;
     background-color: #404040;
     border-radius: 7px;
-    padding: 10px;
+    padding: 12px;
 }
 
 .ind {
@@ -66,4 +66,10 @@
 .listCard img {
     width: 90px;
     height: 80px;
+    border-radius: 7px;
+}
+
+.span {
+    color: grey;
+    font-size: 14px;
 }
