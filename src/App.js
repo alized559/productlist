@@ -77,47 +77,62 @@ function App() {
             <div className="sCol">
               <h1>Edvora</h1>
               <h5 className="prodH5">Products</h5>
-              
-            </div>
-            <div>
-              <hr className="hr1"/>
-              <div className="list">
-                <ItemsCarousel
-                requestToChangeActive={setActiveItemIndex}
-                activeItemIndex={activeItemIndex}
-                numberOfCards={4}
-                gutter={20}
-                leftChevron={<button className="ind">{'<'}</button>}
-                rightChevron={<button className="ind1">{'>'}</button>}
-                outsideChevron
-                chevronWidth={chevronWidth}
-              >
-                <div className="listCard">
-                  <Row>
-                    <Col sm={5}>
-                      <img src={productImage} alt="product_image"/>
-                    </Col>
+                {
+                  productName.map(name => {
+                    return (
+                      <div>
+                        <p>{name}</p>
+                        <hr className="hr1"/>
+                        <div className="list">
+                          <ItemsCarousel
+                            requestToChangeActive={setActiveItemIndex}
+                            activeItemIndex={activeItemIndex}
+                            numberOfCards={4}
+                            gutter={20}
+                            leftChevron={<button className="ind">{'<'}</button>}
+                            rightChevron={<button className="ind1">{'>'}</button>}
+                            outsideChevron
+                            chevronWidth={chevronWidth}
+                          >
+                            {
+                              products.map(product => {
+                                if (product.product_name == name) {
+                                  return(
+                                    <div className="listCard">
+                                      <Row>
+                                        <Col sm={5}>
+                                          <img src={product.image} alt="product_image"/>
+                                        </Col>
 
-                    <Col sm={7}>
-                      <p>Product Name<br/><span className="span">Brand Name</span><br/>$ 29.99</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <p className="span">Location</p>
-                    </Col>
-                    <Col sm={7}>
-                      <p className="span">Date: 10:12:2021</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <p className="span">Descriptionof the product</p>
-                    </Col>
-                  </Row>
-                </div>
-              </ItemsCarousel>
-              </div>
+                                        <Col sm={7}>
+                                          <p>{product.product_name}<br/><span className="span">{product.brand_name}</span><br/>$ {product.price}</p>
+                                        </Col>
+                                      </Row>
+                                      <Row>
+                                        <Col>
+                                          <p className="span1">{product.address.city}</p>
+                                        </Col>
+                                        <Col sm={7}>
+                                          <p className="span1">{product.date}</p>
+                                        </Col>
+                                      </Row>
+                                      <Row>
+                                        <Col>
+                                          <p className="span">{product.discription}</p>
+                                        </Col>
+                                      </Row>
+                                    </div>
+                                  )
+                                }
+                              })
+                            }
+                          </ItemsCarousel>
+                        </div>
+                        <br/>
+                      </div>
+                    )
+                  })
+                }
             </div>
           </Col>
         </Row>
