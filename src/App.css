@@ -1,0 +1,34 @@
+.filters {
+    width: 80%;
+    background-color: #202020;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+.filters-box {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.filters-box p {
+    padding-top: 20px;
+    color: grey;
+}
+
+#drpBtn {
+    background-color: #404040;
+    border-color: #404040;
+    margin-bottom: 10px;
+}
+
+.sCol {
+    margin-top: 30px;
+}
+
+.prodH5 {
+    color: grey;
+}
+
+.hr1 {
+    width: 90%;
+}
