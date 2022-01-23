@@ -54,6 +54,35 @@ function App() {
       }
     }
   }
+
+  function getStates() {
+    return (
+      selectedProduct.map(name => {
+        return (
+          <Dropdown.Item eventKey={name}>{name.address.state}</Dropdown.Item>
+        );
+      })
+    )
+  }
+
+  function getAllStates() {
+    return (
+      state.map(name => {
+        return (
+          <Dropdown.Item eventKey={name}>{name}</Dropdown.Item>
+        );
+      })
+    )
+  }
+
+  const selectState = (e) => {
+    setSelectedProductState(e);
+    
+  }
+
+  const selectCity = (e) => {
+
+  }
   
   return (
     <div className="body">
@@ -78,17 +107,19 @@ function App() {
                   </Dropdown.Menu>
                 </Dropdown>
                               
-                <Dropdown>
+                <Dropdown onSelect={selectState} value={selectedProductState}>
                   <Dropdown.Toggle id="drpBtn">
                     <span className="drpText">State</span>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    {state.map(name => {
-                      return (
-                        <Dropdown.Item href="#">{name}</Dropdown.Item>
-                      );
-                    })}
+                    {
+                      selectedProduct.length > 0
+                      ?
+                      getStates()
+                      :
+                      getAllStates()
+                    }
                   </Dropdown.Menu>
                 </Dropdown>
 
