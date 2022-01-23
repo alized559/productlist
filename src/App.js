@@ -6,6 +6,8 @@ import ItemsCarousel from 'react-items-carousel';
 import productImage from './images/car.jpg';
 import Axios from "axios";
 
+const selectedProduct = [];
+
 function App() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 60;
@@ -16,7 +18,6 @@ function App() {
   const [selectedProductName, setSelectedProductName] = useState("");
   const [selectedProductState, setSelectedProductState] = useState("");
   const [selectedProductCity, setSelectedProductCity] = useState("");
-  const selectedProduct = [];
 
   const fetchProducts = async () => {
     const { data } = await Axios.get(
@@ -129,7 +130,54 @@ function App() {
 
   function singleProduct() {
     return (
-      <p>Ali</p>
+      <div>
+        <p>{selectedProductName}</p>
+        <hr className="hr1"/>
+        <div className="list">
+          <ItemsCarousel
+            className="myCarousel"
+            requestToChangeActive={setActiveItemIndex}
+            activeItemIndex={activeItemIndex}
+            numberOfCards={4}
+            gutter={20}
+            leftChevron={<button className="ind">{'<'}</button>}
+            rightChevron={<button className="ind1">{'>'}</button>}
+            outsideChevron
+            chevronWidth={chevronWidth}
+          >
+        {
+          selectedProduct.map(product => {
+            return (
+              <div className="listCard">
+                <Row>
+                  <Col sm={5}>
+                    <img src={product.image} alt="product_image"/>
+                  </Col>
+
+                  <Col sm={7}>
+                    <p>{product.product_name}<br/><span className="span">{product.brand_name}</span><br/>$ {product.price}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <p className="span1">{product.address.state}, {product.address.city}</p>
+                  </Col>
+                  <Col sm={7}>
+                    <p className="span1">{product.date}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <p className="span">{product.discription}</p>
+                  </Col>
+                </Row>
+              </div>
+            )
+          })
+        }
+        </ItemsCarousel>
+      </div>
+      </div>
     )
   }
 
