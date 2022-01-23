@@ -113,69 +113,85 @@ function App() {
             <div className="sCol">
               <h1>Edvora</h1>
               <h5 className="prodH5">Products</h5>
-                {
-                  productName.map(name => {
-                    return (
-                      <div>
-                        <p>{name}</p>
-                        <hr className="hr1"/>
-                        <div className="list">
-                          <ItemsCarousel
-                            className="myCarousel"
-                            requestToChangeActive={setActiveItemIndex}
-                            activeItemIndex={activeItemIndex}
-                            numberOfCards={4}
-                            gutter={20}
-                            leftChevron={<button className="ind">{'<'}</button>}
-                            rightChevron={<button className="ind1">{'>'}</button>}
-                            outsideChevron
-                            chevronWidth={chevronWidth}
-                          >
-                            {
-                              products.map(product => {
-                                if (product.product_name == name) {
-                                  return(
-                                    <div className="listCard">
-                                      <Row>
-                                        <Col sm={5}>
-                                          <img src={product.image} alt="product_image"/>
-                                        </Col>
-
-                                        <Col sm={7}>
-                                          <p>{product.product_name}<br/><span className="span">{product.brand_name}</span><br/>$ {product.price}</p>
-                                        </Col>
-                                      </Row>
-                                      <Row>
-                                        <Col>
-                                          <p className="span1">{product.address.state}, {product.address.city}</p>
-                                        </Col>
-                                        <Col sm={7}>
-                                          <p className="span1">{product.date}</p>
-                                        </Col>
-                                      </Row>
-                                      <Row>
-                                        <Col>
-                                          <p className="span">{product.discription}</p>
-                                        </Col>
-                                      </Row>
-                                    </div>
-                                  )
-                                }
-                              })
-                            }
-                          </ItemsCarousel>
-                        </div>
-                        <br/>
-                      </div>
-                    )
-                  })
-                }
+              {
+                selectedProduct.length != 0
+                ?
+                singleProduct()
+                :
+                product()
+              }
             </div>
           </Col>
         </Row>
       </Container>
     </div>
   );
+
+  function singleProduct() {
+    return (
+      <p>Ali</p>
+    )
+  }
+
+  function product() {
+    return (
+      productName.map(name => {
+        return (
+          <div>
+            <p>{name}</p>
+            <hr className="hr1"/>
+            <div className="list">
+              <ItemsCarousel
+                className="myCarousel"
+                requestToChangeActive={setActiveItemIndex}
+                activeItemIndex={activeItemIndex}
+                numberOfCards={4}
+                gutter={20}
+                leftChevron={<button className="ind">{'<'}</button>}
+                rightChevron={<button className="ind1">{'>'}</button>}
+                outsideChevron
+                chevronWidth={chevronWidth}
+              >
+                {
+                  products.map(product => {
+                    if (product.product_name == name) {
+                      return(
+                        <div className="listCard">
+                          <Row>
+                            <Col sm={5}>
+                              <img src={product.image} alt="product_image"/>
+                            </Col>
+
+                            <Col sm={7}>
+                              <p>{product.product_name}<br/><span className="span">{product.brand_name}</span><br/>$ {product.price}</p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <p className="span1">{product.address.state}, {product.address.city}</p>
+                            </Col>
+                            <Col sm={7}>
+                              <p className="span1">{product.date}</p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <p className="span">{product.discription}</p>
+                            </Col>
+                          </Row>
+                        </div>
+                      )
+                    }
+                  })
+                }
+              </ItemsCarousel>
+            </div>
+            <br/>
+          </div>
+        )
+      })
+    )
+  }
 }
 
 export default App;
