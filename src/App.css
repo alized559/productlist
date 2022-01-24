@@ -1,24 +1,35 @@
 .filters {
-    width: 80%;
-    background-color: #202020;
+    width: 90%;
+    background-color: #131313;
     margin: 30px;
     border-radius: 15px;
 }
 
 .filters-box {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .filters-box p {
     padding-top: 20px;
     color: grey;
+    font-size: 18px;
+}
+
+.hr {
+    min-height: 2px;
 }
 
 #drpBtn {
-    background-color: #404040;
-    border-color: #404040;
+    background-color: #232323;
+    border-color: #232323;
     margin-bottom: 10px;
+    width: 100%;
+    text-align: end;
+}
+
+#drpBtn span {
+    float: left;
 }
 
 .sCol {
@@ -26,7 +37,9 @@
 }
 
 .prodH5 {
+    margin-top: 20px;
     color: grey;
+    font-size: 26px;
 }
 
 .hr1 {
@@ -35,14 +48,14 @@
 
 .list {
     width: 95%;
-    background-color: #202020;
+    background-color: #131313;
     padding: 20px;
     border-radius: 15px;
 }
 
 .listCard {
     height: 200px;
-    background-color: #404040;
+    background-color: #232323;
     border-radius: 7px;
     padding: 12px;
 }
@@ -77,4 +90,12 @@
 .span1 {
     color: grey;
     font-size: 11px;
+}
+
+.prodBox {
+    margin-left: 10px;
+}
+
+.prodBox p {
+    font-size: 20px;
 }
